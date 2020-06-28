@@ -1,0 +1,18 @@
+{
+  "plugins": [
+    ["module-resolver", {
+      "root": ["./src"],
+      "alias": {
+        "@/util": "./src/utils",
+        "@/navigator": "./src/navigator",
+        "@/models": "./src/models",
+        "@/config": "./src/config",
+        "@/assets": "./src/assets",
+        "@/pages": "./src/pages",
+        "@/component": "./src/component",
+        "@/api": "./src/api"
+        // "underscore": "lodash"
+      }
+    }]
+  ]
+}
