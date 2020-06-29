@@ -6,7 +6,7 @@ import {
   Router,
 } from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Icon from '@/assets/iconfont/'
+import Icon from '@/assets/iconfont/';
 import Listen from '@/pages/Listen';
 import Found from '@/pages/Found';
 import My from '@/pages/My';
@@ -50,18 +50,40 @@ function getHeaderTitle(route: Route) {
 const Tab = createBottomTabNavigator<ButtomTabparamsList>();
 class BottomTabs extends React.Component<IProps> {
   // 初始化获取下
-  componentDidMount(){
+  componentDidMount() {
     const {navigation, route} = this.props;
-    navigation.setOptions({
-      headerTitle: getHeaderTitle(route),
-    });
+    const routenName = route.state
+      ? route.state.routes[route.state.index].name
+      : route.params?.screen || 'HomeTabs';
+    if (routenName === 'HomeTabs') {
+      navigation.setOptions({
+        headerTransparent: true, // 隐藏标题栏
+        headerTitle: '',
+      });
+    } else {
+      navigation.setOptions({
+        headerTransparent: false, // 隐藏标题栏
+        headerTitle: getHeaderTitle(route),
+      });
+    }
   }
   // 切换菜单调用组件更新名字
   componentDidUpdate() {
     const {navigation, route} = this.props;
-    navigation.setOptions({
-      headerTitle: getHeaderTitle(route),
-    });
+    const routenName = route.state
+      ? route.state.routes[route.state.index].name
+      : route.params?.screen || 'HomeTabs';
+    if (routenName === 'HomeTabs') {
+      navigation.setOptions({
+        headerTransparent: true, // 隐藏标题栏
+        headerTitle: '',
+      });
+    } else {
+      navigation.setOptions({
+        headerTransparent: false, // 隐藏标题栏
+        headerTitle: getHeaderTitle(route),
+      });
+    }
   }
   render() {
     return (
@@ -71,9 +93,9 @@ class BottomTabs extends React.Component<IProps> {
           component={HomeTabs}
           options={{
             tabBarLabel: '首页',
-            tabBarIcon:({color,size})=>(
-              <Icon name='iconHome' color={color} size={size}/> 
-            )
+            tabBarIcon: ({color, size}) => (
+              <Icon name="iconHome" color={color} size={size} />
+            ),
           }}
         />
         <Tab.Screen
@@ -81,9 +103,9 @@ class BottomTabs extends React.Component<IProps> {
           component={Listen}
           options={{
             tabBarLabel: '我听',
-            tabBarIcon:({color,size})=>(
-              <Icon name='iconyinle' color={color} size={size}/> 
-            )
+            tabBarIcon: ({color, size}) => (
+              <Icon name="iconyinle" color={color} size={size} />
+            ),
           }}
         />
         <Tab.Screen
@@ -91,9 +113,9 @@ class BottomTabs extends React.Component<IProps> {
           component={Found}
           options={{
             tabBarLabel: '发现',
-            tabBarIcon:({color,size})=>(
-              <Icon name='iconfaxian' color={color} size={size}/> 
-            )
+            tabBarIcon: ({color, size}) => (
+              <Icon name="iconfaxian" color={color} size={size} />
+            ),
           }}
         />
         <Tab.Screen
@@ -101,9 +123,9 @@ class BottomTabs extends React.Component<IProps> {
           component={My}
           options={{
             tabBarLabel: '我的',
-            tabBarIcon:({color,size})=>(
-              <Icon name='iconwode' color={color} size={size}/> 
-            )
+            tabBarIcon: ({color, size}) => (
+              <Icon name="iconwode" color={color} size={size} />
+            ),
           }}
         />
       </Tab.Navigator>
