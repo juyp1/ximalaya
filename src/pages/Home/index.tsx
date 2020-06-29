@@ -28,8 +28,15 @@ type ModelState = ConnectedProps<typeof connector>;
 interface IProps extends ModelState {
   navigation: RootStackNavigation;
 }
-
+// interface IState {
+//   refreshing: boolean;
+// }
+// 控制下拉刷新是否展示
 class Home extends React.Component<IProps> {
+  // 下拉展示 松开释放
+  state = {
+    refreshing: false,
+  };
   componentDidMount() {
     const {dispatch} = this.props;
     dispatch({
@@ -37,12 +44,9 @@ class Home extends React.Component<IProps> {
     });
     this.feact();
   }
-  handledetail = () => {
-    this.props.navigation.push('Detail', {id: 100});
-  };
+
   handledetails = () => {};
-  
-  
+
   feact = () => {
     const {dispatch} = this.props;
     dispatch({
@@ -61,13 +65,29 @@ class Home extends React.Component<IProps> {
     return item.id;
   };
   onEndReached = () => {
-    
     const {dispatch, loading, hasMore} = this.props;
     if (loading || !hasMore) return;
     dispatch({
       type: 'home/asyncChannels',
       payload: {
         loadMore: true,
+      },
+    });
+  };
+  // 下拉刷新
+  onRefresh = () => {
+    // 设置刷新为真
+    this.setState({
+      refreshing: true,
+    });
+    const {dispatch} = this.props;
+    dispatch({
+      type: 'home/asyncChannels',
+      callback: () => {
+        // 请求完毕拿到数据改为假
+        this.setState({
+          refreshing: false,
+        });
       },
     });
   };
@@ -100,7 +120,7 @@ class Home extends React.Component<IProps> {
     }
   }
   get empty() {
-    const {loading,channgels} = this.props;
+    const {loading, channgels} = this.props;
     if (loading) return;
     if (channgels.length > 0) return;
     return (
@@ -109,8 +129,10 @@ class Home extends React.Component<IProps> {
       </View>
     );
   }
+  
   render() {
     const {channgels} = this.props;
+    const {refreshing} = this.state;
     return (
       <View>
         <FlatList
@@ -121,6 +143,8 @@ class Home extends React.Component<IProps> {
           renderItem={this.renderItem}
           data={channgels}
           onEndReached={this.onEndReached}
+          onRefresh={this.onRefresh}
+          refreshing={refreshing}
           onEndReachedThreshold={0.1}
         />
       </View>

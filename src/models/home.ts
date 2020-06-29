@@ -110,8 +110,8 @@ const homeModel: HomeModel = {
         payload: data.data
       });
     },
-    // 首页列表
-    *asyncChannels({_,payload}, { call, put,select }) {
+    // 首页列表 callback 通知返回回调
+    *asyncChannels({callback,payload}, { call, put,select }) {
      const {channgels,pagination}= yield select ((state:RootState)=>state.home) // 拿到所有
      let page =1;
      if(payload&&payload.loadMore){
@@ -120,7 +120,7 @@ const homeModel: HomeModel = {
      // 传递参数形式
       const { data, status, msg } = yield call(axios.get, CHANNEL_URL,{
         params:{
-            pageindex:pagination.current,
+            pageindex:page,
             pagesize:10,
         }
       });
@@ -139,6 +139,10 @@ const homeModel: HomeModel = {
           hasMore:newChannels.length<paginations.total
         }
       });
+      // 回调通知已返回数据结果
+      if(typeof callback === 'function'){
+        callback();
+      }
     },
   }
 };
