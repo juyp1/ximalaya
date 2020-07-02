@@ -51,6 +51,9 @@ const Tab = createBottomTabNavigator<ButtomTabparamsList>();
 class BottomTabs extends React.Component<IProps> {
   // 初始化获取下
   componentDidMount() {
+    this.setOptions();
+  }
+  setOptions=()=>{
     const {navigation, route} = this.props;
     const routenName = route.state
       ? route.state.routes[route.state.index].name
@@ -69,21 +72,7 @@ class BottomTabs extends React.Component<IProps> {
   }
   // 切换菜单调用组件更新名字
   componentDidUpdate() {
-    const {navigation, route} = this.props;
-    const routenName = route.state
-      ? route.state.routes[route.state.index].name
-      : route.params?.screen || 'HomeTabs';
-    if (routenName === 'HomeTabs') {
-      navigation.setOptions({
-        headerTransparent: true, // 隐藏标题栏
-        headerTitle: '',
-      });
-    } else {
-      navigation.setOptions({
-        headerTransparent: false, // 隐藏标题栏
-        headerTitle: getHeaderTitle(route),
-      });
-    }
+     this.setOptions()
   }
   render() {
     return (

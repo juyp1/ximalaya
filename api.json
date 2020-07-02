@@ -1,0 +1,122 @@
+[
+  {
+    "index": 0,
+    "name": "首页",
+    "desc": null,
+    "add_time": 1592667971,
+    "up_time": 1592667971,
+    "list": [
+      {
+        "query_path": {
+          "path": "/channel",
+          "params": []
+        },
+        "edit_uid": 0,
+        "status": "done",
+        "type": "static",
+        "req_body_is_json_schema": true,
+        "res_body_is_json_schema": true,
+        "api_opened": false,
+        "index": 0,
+        "tag": [],
+        "_id": 38,
+        "method": "GET",
+        "catid": 15,
+        "title": "列表",
+        "path": "/channel",
+        "project_id": 20,
+        "req_params": [],
+        "res_body_type": "json",
+        "uid": 12,
+        "add_time": 1592950711,
+        "up_time": 1593307952,
+        "req_query": [
+          {
+            "required": "1",
+            "_id": "5ef7f330ac284f0432a2d641",
+            "name": "pageindex",
+            "example": "1",
+            "desc": ""
+          },
+          {
+            "required": "1",
+            "_id": "5ef7f330ac284f0432a2d640",
+            "name": "pagesize",
+            "example": "10",
+            "desc": ""
+          }
+        ],
+        "req_headers": [],
+        "req_body_form": [],
+        "__v": 0,
+        "desc": "",
+        "markdown": "",
+        "res_body": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"status\":{\"type\":\"number\",\"mock\":{\"mock\":\"200\"}},\"message\":{\"type\":\"string\",\"mock\":{\"mock\":\"success\"}},\"data\":{\"type\":\"object\",\"properties\":{\"result\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"string\",\"mock\":{\"mock\":\"@guid\"},\"description\":\"主键\"},\"image\":{\"type\":\"string\",\"mock\":{\"mock\":\"http://39.105.213.120/thumbnail/@integer(1,61).jpg\"},\"description\":\"图片\"},\"title\":{\"type\":\"string\",\"mock\":{\"mock\":\"@ctitle\"},\"description\":\"标题\"},\"remark\":{\"type\":\"string\"},\"played\":{\"type\":\"number\",\"mock\":{\"mock\":\"@integer(1,1000)\"}},\"playing\":{\"type\":\"number\",\"mock\":{\"mock\":\"@integer(1,1000)\"}}},\"required\":[\"id\",\"image\",\"title\",\"remark\",\"played\",\"playing\"]},\"minItems\":4,\"maxItems\":4},\"pagination\":{\"type\":\"object\",\"properties\":{\"current\":{\"type\":\"number\",\"mock\":{\"mock\":\"1\"}},\"total\":{\"type\":\"number\",\"mock\":{\"mock\":\"20\"}}},\"required\":[\"current\",\"total\"]}},\"required\":[\"result\",\"pagination\"]}},\"required\":[\"status\",\"message\",\"data\"]}"
+      },
+      {
+        "query_path": {
+          "path": "/like",
+          "params": []
+        },
+        "edit_uid": 0,
+        "status": "done",
+        "type": "static",
+        "req_body_is_json_schema": true,
+        "res_body_is_json_schema": true,
+        "api_opened": false,
+        "index": 0,
+        "tag": [],
+        "_id": 30,
+        "method": "GET",
+        "catid": 15,
+        "title": "猜你喜欢",
+        "path": "/like",
+        "project_id": 20,
+        "req_params": [],
+        "res_body_type": "json",
+        "uid": 12,
+        "add_time": 1592872163,
+        "up_time": 1592878975,
+        "req_query": [],
+        "req_headers": [],
+        "req_body_form": [],
+        "__v": 0,
+        "desc": "",
+        "markdown": "",
+        "res_body": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"status\":{\"type\":\"number\",\"mock\":{\"mock\":\"200\"}},\"message\":{\"type\":\"string\",\"mock\":{\"mock\":\"success\"}},\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"string\",\"mock\":{\"mock\":\"@id\"}},\"title\":{\"type\":\"string\",\"mock\":{\"mock\":\"@ctitle\"}},\"image\":{\"type\":\"string\",\"mock\":{\"mock\":\"http://39.105.213.120/thumbnail/@integer(1,61).jpg\"}}},\"required\":[\"id\",\"title\",\"image\"]},\"minItems\":6,\"maxItems\":6}},\"required\":[\"status\",\"message\",\"data\"]}"
+      },
+      {
+        "query_path": {
+          "path": "/carousel",
+          "params": []
+        },
+        "edit_uid": 12,
+        "status": "done",
+        "type": "static",
+        "req_body_is_json_schema": true,
+        "res_body_is_json_schema": true,
+        "api_opened": false,
+        "index": 0,
+        "tag": [],
+        "_id": 23,
+        "method": "GET",
+        "catid": 15,
+        "title": "轮播图接口",
+        "path": "/carousel",
+        "project_id": 20,
+        "req_params": [],
+        "res_body_type": "json",
+        "uid": 12,
+        "add_time": 1592667998,
+        "up_time": 1592878974,
+        "req_query": [],
+        "req_headers": [],
+        "req_body_form": [],
+        "__v": 0,
+        "desc": "",
+        "markdown": "",
+        "res_body": "{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"object\",\"properties\":{\"status\":{\"type\":\"number\"},\"msg\":{\"type\":\"string\"},\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"number\"},\"image\":{\"type\":\"string\",\"mock\":{\"mock\":\"http://39.105.213.120/thumbnail/@integer(1,61).jpg\"}},\"color\":{\"type\":\"array\",\"items\":{\"type\":\"string\",\"mock\":{\"mock\":\"@color\"}},\"minItems\":2,\"maxItems\":2}},\"required\":[\"id\",\"image\",\"color\"]}}}}"
+      }
+    ]
+  }
+]
