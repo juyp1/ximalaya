@@ -91,12 +91,33 @@ class Home extends React.Component<IProps> {
       },
     });
   };
+  // 滚动
+  onScroll = (e: any) => {
+    console.log(e.nativeEvent.contentOffset.y); // 获取高度
+    let offsetY = e.nativeEvent.contentOffset.y;
+    const {dispatch} = this.props;
+    if (offsetY > 300) {
+      
+      dispatch({
+        type: 'home/visblecarousels',
+        payload: {
+          carouselvisble: true,
+        },
+      });
+    }else {
+      dispatch({
+        type: 'home/visblecarousels',
+        payload: {
+          carouselvisble: false,
+        },
+      });
+    }
+  };
   // 属性形式 get
   get header() {
-    const {carousels} = this.props;
     return (
       <View>
-        <Carousel data={carousels} />
+        <Carousel />
         <Gruess />
       </View>
     );
@@ -129,13 +150,14 @@ class Home extends React.Component<IProps> {
       </View>
     );
   }
-  
+
   render() {
     const {channgels} = this.props;
     const {refreshing} = this.state;
     return (
       <View>
         <FlatList
+          onScroll={this.onScroll}
           ListEmptyComponent={this.empty}
           ListHeaderComponent={this.header}
           ListFooterComponent={this.footer}

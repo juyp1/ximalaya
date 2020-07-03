@@ -5,7 +5,7 @@ import {
   MaterialTopTabBarProps,
 } from '@react-navigation/material-top-tabs';
 import Home from '@/pages/Home';
-import {View} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import TopTabBarWrapper from '../pages/componet/TopTabBarWrapper'
 const Tab = createMaterialTopTabNavigator(); // 接收此函数返回值
 class HomeTabs extends React.Component {
@@ -23,6 +23,7 @@ class HomeTabs extends React.Component {
       <Tab.Navigator
         tabBar={this.renderTabBar} // 自定义导航
         lazy={true} // 懒加载tab
+        sceneContainerStyle={styles.scenecontainer}
         tabBarOptions={{
           scrollEnabled: true,
           tabStyle: {
@@ -47,4 +48,9 @@ class HomeTabs extends React.Component {
     );
   }
 }
+const styles = StyleSheet.create({
+  scenecontainer:{
+    backgroundColor:'transparent'
+  }
+})
 export default HomeTabs;

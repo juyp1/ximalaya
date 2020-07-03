@@ -7,7 +7,8 @@ import {CAROUSEL_URL,LIKE_URl,CHANNEL_URL} from '@/api/home';
 export interface ICarouser {
   id: string,
   image: string,
-  color: [string, string]
+  colors: [string, string],
+
 }
 
 export interface ILike {
@@ -30,12 +31,14 @@ export interface IPagination {
    total:number,
    hasMore:boolean // 是否能继续加载下一页
 }
-// 定义当前页面需要用的状态变量
+// 定义当前页面需要用的状态变量 全局能拿的
 export interface HomeState {
   carousels: ICarouser[];
   likes: ILike[];
   channgels:IChannel[];
   pagination:IPagination;
+  activeCarouseIndex:number; // 当前轮播图下标
+  carouselvisble:boolean // 滚动高度
 }
  
 interface HomeModel extends Model {
@@ -45,6 +48,7 @@ interface HomeModel extends Model {
     initlist: Reducer<HomeState>;
     initlikes: Reducer<HomeState>;
     initchangels:Reducer<HomeState>;
+    visblecarousels:Reducer<HomeState>;
   };
   // 定义异步函数
   effects:{
@@ -55,10 +59,11 @@ interface HomeModel extends Model {
 
 };
 const initialState:HomeState = {
-   
+  activeCarouseIndex:0,
   carousels: [],
   likes: [],
   channgels:[],
+  carouselvisble:false,
   pagination:{
     current:1,
     total:0,
@@ -87,6 +92,13 @@ const homeModel: HomeModel = {
       return {
         ...state,
         channgels: payload,
+        
+      }
+    },
+    visblecarousels(state=initialState,{payload,type}) {
+      return {
+        ...state,
+        carouselvisble: payload.carouselvisble,
         
       }
     }

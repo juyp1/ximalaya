@@ -6,25 +6,64 @@ import {
 } from '@react-navigation/material-top-tabs';
 import {getStatusBarHeight} from 'react-native-iphone-x-helper';
 import Touchable from '@/component/Touchable';
-//props 参数
-interface IProps extends MaterialTopTabBarProps {}
+import LinearGradient from 'react-native-linear-gradient';
+//import LinearGradientAnimated  from 'react-native-linear-animated-gradient-transition'
+import {RootState} from '@/models/index';
+import {connect, ConnectedProps} from 'react-redux';
+const mapStateToProps = ({home}: RootState) => {
+  return {
+    carouselvisble: home.carouselvisble,
+    linearColor:
+      home.carousels.length > 0
+        ? home.carousels[home.activeCarouseIndex].colors
+        : ['#FFB6C1', '#1E90FF'],
+  };
+};
+const connector = connect(mapStateToProps);
+type ModelState = ConnectedProps<typeof connector>;
+//props 参数 多继承使用联合类型
+type IProps = MaterialTopTabBarProps & ModelState;
 class TopTabBarWrapper extends React.Component<IProps> {
+  state = {
+    activeTintColor: '#333',
+  };
+
+  get linerGradinet() {
+    const {carouselvisble, linearColor = ['#FFB6C1', '#1E90FF']} = this.props;
+    if (carouselvisble) {
+      return null;
+    }
+    return (
+      <LinearGradient
+        colors={linearColor}
+        style={styles.gradient}></LinearGradient>
+    );
+  }
   render() {
     const {props} = this;
+    const {carouselvisble} = props;
     return (
       <View style={styles.container}>
+        {this.linerGradinet}
         <View style={styles.topTabBarView}>
           <MaterialTopTabBar {...props} style={styles.tabbar} />
+          {/* activeTintColor={} */}
           <Touchable style={styles.categoryBtn}>
-            <Text>分类</Text>
+            <Text style={{color: carouselvisble ? '#333333' : '#ffffff'}}>
+              分类
+            </Text>
           </Touchable>
         </View>
         <View style={styles.bttommenu}>
           <Touchable style={styles.serachBtn}>
-            <Text>搜索按钮</Text>
+            <Text style={{color: carouselvisble ? '#333333' : '#ffffff'}}>
+              搜索按钮
+            </Text>
           </Touchable>
           <Touchable style={styles.historyBtn}>
-            <Text>历史记录</Text>
+            <Text style={{color: carouselvisble ? '#333333' : '#ffffff'}}>
+              历史记录
+            </Text>
           </Touchable>
         </View>
       </View>
@@ -39,8 +78,8 @@ const styles = StyleSheet.create({
   tabbar: {
     elevation: 0,
     flex: 1,
-    overflow:'hidden',
-    backgroundColor:'transparent'
+    overflow: 'hidden',
+    backgroundColor: 'transparent',
   },
   topTabBarView: {
     display: 'flex',
@@ -52,23 +91,27 @@ const styles = StyleSheet.create({
     borderLeftWidth: StyleSheet.hairlineWidth,
     borderLeftColor: '#cccccc',
   },
-  bttommenu:{
-    display:'flex',
+  bttommenu: {
+    display: 'flex',
     flexDirection: 'row',
-    paddingVertical:7,
-    paddingHorizontal:15,
-    alignItems:'center'
+    paddingVertical: 7,
+    paddingHorizontal: 15,
+    alignItems: 'center',
   },
   serachBtn: {
-    flex:1,
+    flex: 1,
     paddingLeft: 12,
     height: 30,
     justifyContent: 'center',
     borderRadius: 15,
-    backgroundColor:'rgba(0,0,0,0.1)'
+    backgroundColor: 'rgba(0,0,0,0.1)',
   },
   historyBtn: {
-    marginLeft:24
+    marginLeft: 24,
+  },
+  gradient: {
+    ...StyleSheet.absoluteFillObject,
+    height: 260,
   },
 });
-export default TopTabBarWrapper;
+export default connector(TopTabBarWrapper);

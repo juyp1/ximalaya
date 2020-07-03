@@ -8,6 +8,8 @@ import {viewportWidth, wp, hp} from '@/util/index';
 
 import {StyleSheet, View} from 'react-native';
 import {ICarouser} from '@/models/home';
+import {ConnectedProps, connect} from 'react-redux';
+import {RootState} from '@/models/index';
 
 const sliderWidth = viewportWidth;
 const itemWidth = wp(90) + wp(2) * 2;
@@ -17,17 +19,38 @@ const sildeHeight = hp(26);
 // const slideWidth = 280;
 // const itemWidth = slideWidth + horizontalMargin * 2;
 // const sildeHeight = 200;
-interface IProps {
-  data: ICarouser[];
-}
+const mapStateToProps = ({home}: RootState) => ({
+  data: home.carousels,
+  activeCarouseIndex: home.activeCarouseIndex,
+});
+const connector = connect(mapStateToProps); // 映射state中的model
+type ModelState = ConnectedProps<typeof connector>;
+
+interface IProps extends ModelState {}
+
 class Carousel extends React.Component<IProps> {
-  
   state = {
     activeSlide: 0,
   };
+  componentDidMount() {
+    const {dispatch} = this.props;
+    dispatch({
+      type: 'home/asyncCarousels',
+      payload: {
+        activeCarouseIndex: 0,
+      },
+    });
+  }
   onSnapToItem = (index: number) => {
-    this.setState({
-      activeSlide: index,
+    // this.setState({
+    //   activeSlide: index,
+    // });
+    const {dispatch} = this.props;
+    dispatch({
+      type: 'home/asyncCarousels',
+      payload: {
+        activeCarouseIndex: index,
+      },
     });
   };
   renderItem = (
@@ -50,13 +73,13 @@ class Carousel extends React.Component<IProps> {
   };
   get pagination() {
     const {activeSlide} = this.state;
-    const {data} = this.props;
+    const {data, activeCarouseIndex} = this.props;
     return (
       <View style={styles.paginationwarrper}>
         <Pagination
           inactiveDotScale={0.9}
           containerStyle={styles.paginationContainer}
-          activeDotIndex={activeSlide}
+          activeDotIndex={activeCarouseIndex}
           dotStyle={styles.dotStyleConatainer}
           inactiveDotOpacity={0.6}
           dotsLength={data.length}
@@ -117,4 +140,4 @@ const styles = StyleSheet.create({
     borderRadius: 3,
   },
 });
-export default Carousel;
+export default connector(Carousel);
