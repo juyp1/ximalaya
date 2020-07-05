@@ -4,4 +4,6 @@ const CAROUSEL_URL = 'carousel';
 const LIKE_URl = 'like';
 //首页列表
 const CHANNEL_URL = 'channel';
-export {CAROUSEL_URL, LIKE_URl, CHANNEL_URL};
+//颜色
+const COLORS_URL = 'colors'
+export {CAROUSEL_URL, LIKE_URl, CHANNEL_URL,COLORS_URL};

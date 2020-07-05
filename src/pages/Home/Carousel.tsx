@@ -42,15 +42,16 @@ class Carousel extends React.Component<IProps> {
     });
   }
   onSnapToItem = (index: number) => {
-    // this.setState({
-    //   activeSlide: index,
-    // });
+    this.setState({
+      activeSlide: index,
+    });
+    
     const {dispatch} = this.props;
     dispatch({
-      type: 'home/asyncCarousels',
-      payload: {
-        activeCarouseIndex: index,
-      },
+      type: 'home/asyncColors',
+      // payload: {
+      //   colors: index,
+      // },
     });
   };
   renderItem = (
@@ -79,7 +80,7 @@ class Carousel extends React.Component<IProps> {
         <Pagination
           inactiveDotScale={0.9}
           containerStyle={styles.paginationContainer}
-          activeDotIndex={activeCarouseIndex}
+          activeDotIndex={activeSlide}
           dotStyle={styles.dotStyleConatainer}
           inactiveDotOpacity={0.6}
           dotsLength={data.length}
@@ -91,6 +92,7 @@ class Carousel extends React.Component<IProps> {
     const {data} = this.props;
     return (
       <View>
+        {/* autoplay 自动滚动 */}
         <SnapCarousel
           data={data}
           renderItem={this.renderItem}
@@ -98,7 +100,7 @@ class Carousel extends React.Component<IProps> {
           onSnapToItem={this.onSnapToItem}
           hasParallaxImages
           loop
-          autoplay
+          
           itemWidth={itemWidth}
           removeClippedSubviews={false}
         />

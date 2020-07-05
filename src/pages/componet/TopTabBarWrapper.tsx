@@ -10,12 +10,13 @@ import LinearGradient from 'react-native-linear-gradient';
 //import LinearGradientAnimated  from 'react-native-linear-animated-gradient-transition'
 import {RootState} from '@/models/index';
 import {connect, ConnectedProps} from 'react-redux';
+import { ThemeProvider } from '@react-navigation/native';
 const mapStateToProps = ({home}: RootState) => {
   return {
     carouselvisble: home.carouselvisble,
     linearColor:
       home.carousels.length > 0
-        ? home.carousels[home.activeCarouseIndex].colors
+        ? home.colors
         : ['#FFB6C1', '#1E90FF'],
   };
 };
@@ -24,29 +25,41 @@ type ModelState = ConnectedProps<typeof connector>;
 //props 参数 多继承使用联合类型
 type IProps = MaterialTopTabBarProps & ModelState;
 class TopTabBarWrapper extends React.Component<IProps> {
-  state = {
-    activeTintColor: '#333',
-  };
+  
 
   get linerGradinet() {
     const {carouselvisble, linearColor = ['#FFB6C1', '#1E90FF']} = this.props;
     if (carouselvisble) {
+   
       return null;
+    }else {
+     
+      return (
+        <LinearGradient
+          colors={linearColor}
+          style={styles.gradient}></LinearGradient>
+      );
     }
-    return (
-      <LinearGradient
-        colors={linearColor}
-        style={styles.gradient}></LinearGradient>
-    );
+    
   }
   render() {
     const {props} = this;
-    const {carouselvisble} = props;
+    let {carouselvisble,indicatorStyle} = props;
+     
+    let activeTintColor= "#333";
+    if(carouselvisble) {
+      activeTintColor="#333333"
+    }else {
+      activeTintColor="#ffffff"
+      if(indicatorStyle){
+        indicatorStyle=StyleSheet.compose(indicatorStyle,styles.widthbackground)
+      }
+    }
     return (
       <View style={styles.container}>
         {this.linerGradinet}
         <View style={styles.topTabBarView}>
-          <MaterialTopTabBar {...props} style={styles.tabbar} />
+          <MaterialTopTabBar {...props}  activeTintColor={activeTintColor} indicatorStyle={indicatorStyle} style={styles.tabbar} />
           {/* activeTintColor={} */}
           <Touchable style={styles.categoryBtn}>
             <Text style={{color: carouselvisble ? '#333333' : '#ffffff'}}>
@@ -113,5 +126,8 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     height: 260,
   },
+  widthbackground:{
+    backgroundColor:'#ffffff'
+  }
 });
 export default connector(TopTabBarWrapper);

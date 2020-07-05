@@ -93,7 +93,7 @@ class Home extends React.Component<IProps> {
   };
   // 滚动
   onScroll = (e: any) => {
-    console.log(e.nativeEvent.contentOffset.y); // 获取高度
+    // console.log(e.nativeEvent.contentOffset.y); // 获取高度
     let offsetY = e.nativeEvent.contentOffset.y;
     const {dispatch} = this.props;
     if (offsetY > 300) {
@@ -118,7 +118,9 @@ class Home extends React.Component<IProps> {
     return (
       <View>
         <Carousel />
+        <View style={styles.bkgruess}>
         <Gruess />
+        </View>
       </View>
     );
   }
@@ -183,5 +185,8 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     alignItems: 'center',
   },
+  bkgruess:{
+    backgroundColor:'#ffffff'
+  }
 });
 export default connector(Home);
