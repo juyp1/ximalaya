@@ -9,14 +9,17 @@ import {
 let Stack = createStackNavigator();
 import Home from '../pages/Home';
 import Detail from '../pages/Detail';
+import Catgory from '@/pages/Category';
 import {Platform, StyleSheet, StatusBar} from 'react-native';
 import BottomTabs from './BottomTabs';
+import Category from '@/pages/Category';
 /*
 Stack Navigator  // 导航器
       Screen  // 路由组件
 */
 export type RootStackParamList = {
   BottomTabs: {screen?: string};
+  Catgory:undefined;
   Detail: {
     id: number;
   };
@@ -48,6 +51,18 @@ class Navigator extends React.Component {
             },
           }}>
           <Stack.Screen name="BottomTabs" component={BottomTabs} />
+          <Stack.Screen
+            options={{
+              headerTitle: '分类',
+              // headerRight()=>{
+
+              // }
+
+          }}
+            name="Category"
+            component={Category}
+            
+          />
           <Stack.Screen
             options={{headerTitle: '详情'}}
             name="Detail"

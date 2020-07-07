@@ -30,4 +30,4 @@ Iconyinle.defaultProps = {
   size: 18,
 };
 
-export default Iconyinle;
+export default React.memo ? React.memo(Iconyinle) : Iconyinle;

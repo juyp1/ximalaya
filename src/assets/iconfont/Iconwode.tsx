@@ -26,4 +26,4 @@ Iconwode.defaultProps = {
   size: 18,
 };
 
-export default Iconwode;
+export default React.memo ? React.memo(Iconwode) : Iconwode;

@@ -42,6 +42,12 @@ class TopTabBarWrapper extends React.Component<IProps> {
     }
     
   }
+
+  handlecategory=()=>{
+    const { navigation}=this.props;
+    navigation.navigate('Category')
+    
+  }
   render() {
     const {props} = this;
     let {carouselvisble,indicatorStyle} = props;
@@ -61,7 +67,7 @@ class TopTabBarWrapper extends React.Component<IProps> {
         <View style={styles.topTabBarView}>
           <MaterialTopTabBar {...props}  activeTintColor={activeTintColor} indicatorStyle={indicatorStyle} style={styles.tabbar} />
           {/* activeTintColor={} */}
-          <Touchable style={styles.categoryBtn}>
+          <Touchable style={styles.categoryBtn} onPress={this.handlecategory}>
             <Text style={{color: carouselvisble ? '#333333' : '#ffffff'}}>
               分类
             </Text>

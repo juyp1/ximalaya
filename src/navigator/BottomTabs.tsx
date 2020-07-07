@@ -33,7 +33,7 @@ function getHeaderTitle(route: Route) {
   switch (routenName) {
     case 'HomeTabs':
       return '首页';
-
+  
     case 'Listen':
       return '我听';
 
@@ -53,7 +53,7 @@ class BottomTabs extends React.Component<IProps> {
   componentDidMount() {
     this.setOptions();
   }
-  setOptions=()=>{
+  setOptions = () => {
     const {navigation, route} = this.props;
     const routenName = route.state
       ? route.state.routes[route.state.index].name
@@ -69,10 +69,10 @@ class BottomTabs extends React.Component<IProps> {
         headerTitle: getHeaderTitle(route),
       });
     }
-  }
+  };
   // 切换菜单调用组件更新名字
   componentDidUpdate() {
-     this.setOptions()
+    this.setOptions();
   }
   render() {
     return (

@@ -26,4 +26,4 @@ Iconerji.defaultProps = {
   size: 18,
 };
 
-export default Iconerji;
+export default React.memo ? React.memo(Iconerji) : Iconerji;

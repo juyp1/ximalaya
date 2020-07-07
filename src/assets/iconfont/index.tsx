@@ -4,6 +4,7 @@
 import React, { FunctionComponent } from 'react';
 import { ViewProps } from 'react-native';
 import { GProps } from 'react-native-svg';
+import Iconsearch from './Iconsearch';
 import Iconerji from './Iconerji';
 import Iconziyuanldpi from './Iconziyuanldpi';
 import Iconhuanyipi from './Iconhuanyipi';
@@ -14,7 +15,7 @@ import Iconfaxian from './Iconfaxian';
 import Iconyinle from './Iconyinle';
 import IconHome from './IconHome';
 
-export type IconNames = 'iconerji' | 'iconziyuanldpi' | 'iconhuanyipi' | 'iconyoujiantou' | 'iconcainixihuan' | 'iconwode' | 'iconfaxian' | 'iconyinle' | 'iconHome';
+export type IconNames = 'iconsearch' | 'iconerji' | 'iconziyuanldpi' | 'iconhuanyipi' | 'iconyoujiantou' | 'iconcainixihuan' | 'iconwode' | 'iconfaxian' | 'iconyinle' | 'iconHome';
 
 interface Props extends GProps, ViewProps {
   name: IconNames;
@@ -24,27 +25,29 @@ interface Props extends GProps, ViewProps {
 
 const IconFont: FunctionComponent<Props> = ({ name, ...rest }) => {
   switch (name) {
+    case 'iconsearch':
+      return <Iconsearch key="1" {...rest} />;
     case 'iconerji':
-      return <Iconerji {...rest} />;
+      return <Iconerji key="2" {...rest} />;
     case 'iconziyuanldpi':
-      return <Iconziyuanldpi {...rest} />;
+      return <Iconziyuanldpi key="3" {...rest} />;
     case 'iconhuanyipi':
-      return <Iconhuanyipi {...rest} />;
+      return <Iconhuanyipi key="4" {...rest} />;
     case 'iconyoujiantou':
-      return <Iconyoujiantou {...rest} />;
+      return <Iconyoujiantou key="5" {...rest} />;
     case 'iconcainixihuan':
-      return <Iconcainixihuan {...rest} />;
+      return <Iconcainixihuan key="6" {...rest} />;
     case 'iconwode':
-      return <Iconwode {...rest} />;
+      return <Iconwode key="7" {...rest} />;
     case 'iconfaxian':
-      return <Iconfaxian {...rest} />;
+      return <Iconfaxian key="8" {...rest} />;
     case 'iconyinle':
-      return <Iconyinle {...rest} />;
+      return <Iconyinle key="9" {...rest} />;
     case 'iconHome':
-      return <IconHome {...rest} />;
+      return <IconHome key="10" {...rest} />;
   }
 
   return null;
 };
 
-export default IconFont;
+export default React.memo ? React.memo(IconFont) : IconFont;

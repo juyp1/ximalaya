@@ -40,6 +40,12 @@ class Carousel extends React.Component<IProps> {
         activeCarouseIndex: 0,
       },
     });
+     dispatch({
+      type: 'home/asyncColors',
+      // payload: {
+      //   colors: index,
+      // },
+    });
   }
   onSnapToItem = (index: number) => {
     this.setState({

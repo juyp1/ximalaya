@@ -26,4 +26,4 @@ Iconyoujiantou.defaultProps = {
   size: 18,
 };
 
-export default Iconyoujiantou;
+export default React.memo ? React.memo(Iconyoujiantou) : Iconyoujiantou;

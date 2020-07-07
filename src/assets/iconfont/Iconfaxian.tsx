@@ -34,4 +34,4 @@ Iconfaxian.defaultProps = {
   size: 18,
 };
 
-export default Iconfaxian;
+export default React.memo ? React.memo(Iconfaxian) : Iconfaxian;

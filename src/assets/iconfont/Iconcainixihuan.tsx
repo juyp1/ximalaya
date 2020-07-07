@@ -26,4 +26,4 @@ Iconcainixihuan.defaultProps = {
   size: 18,
 };
 
-export default Iconcainixihuan;
+export default React.memo ? React.memo(Iconcainixihuan) : Iconcainixihuan;

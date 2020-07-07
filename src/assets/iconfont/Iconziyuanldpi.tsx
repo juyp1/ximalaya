@@ -26,4 +26,4 @@ Iconziyuanldpi.defaultProps = {
   size: 18,
 };
 
-export default Iconziyuanldpi;
+export default React.memo ? React.memo(Iconziyuanldpi) : Iconziyuanldpi;

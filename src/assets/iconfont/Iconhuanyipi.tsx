@@ -26,4 +26,4 @@ Iconhuanyipi.defaultProps = {
   size: 18,
 };
 
-export default Iconhuanyipi;
+export default React.memo ? React.memo(Iconhuanyipi) : Iconhuanyipi;

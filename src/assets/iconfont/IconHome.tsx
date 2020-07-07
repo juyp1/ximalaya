@@ -26,4 +26,4 @@ IconHome.defaultProps = {
   size: 18,
 };
 
-export default IconHome;
+export default React.memo ? React.memo(IconHome) : IconHome;
