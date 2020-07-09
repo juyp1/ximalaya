@@ -1,122 +1,223 @@
-[
-  {
-    "index": 0,
-    "name": "首页",
-    "desc": null,
-    "add_time": 1592667971,
-    "up_time": 1592667971,
-    "list": [
-      {
-        "query_path": {
-          "path": "/channel",
-          "params": []
-        },
-        "edit_uid": 0,
-        "status": "done",
-        "type": "static",
-        "req_body_is_json_schema": true,
-        "res_body_is_json_schema": true,
-        "api_opened": false,
-        "index": 0,
-        "tag": [],
-        "_id": 38,
-        "method": "GET",
-        "catid": 15,
-        "title": "列表",
-        "path": "/channel",
-        "project_id": 20,
-        "req_params": [],
-        "res_body_type": "json",
-        "uid": 12,
-        "add_time": 1592950711,
-        "up_time": 1593307952,
-        "req_query": [
-          {
-            "required": "1",
-            "_id": "5ef7f330ac284f0432a2d641",
-            "name": "pageindex",
-            "example": "1",
-            "desc": ""
-          },
-          {
-            "required": "1",
-            "_id": "5ef7f330ac284f0432a2d640",
-            "name": "pagesize",
-            "example": "10",
-            "desc": ""
-          }
-        ],
-        "req_headers": [],
-        "req_body_form": [],
-        "__v": 0,
-        "desc": "",
-        "markdown": "",
-        "res_body": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"status\":{\"type\":\"number\",\"mock\":{\"mock\":\"200\"}},\"message\":{\"type\":\"string\",\"mock\":{\"mock\":\"success\"}},\"data\":{\"type\":\"object\",\"properties\":{\"result\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"string\",\"mock\":{\"mock\":\"@guid\"},\"description\":\"主键\"},\"image\":{\"type\":\"string\",\"mock\":{\"mock\":\"http://39.105.213.120/thumbnail/@integer(1,61).jpg\"},\"description\":\"图片\"},\"title\":{\"type\":\"string\",\"mock\":{\"mock\":\"@ctitle\"},\"description\":\"标题\"},\"remark\":{\"type\":\"string\"},\"played\":{\"type\":\"number\",\"mock\":{\"mock\":\"@integer(1,1000)\"}},\"playing\":{\"type\":\"number\",\"mock\":{\"mock\":\"@integer(1,1000)\"}}},\"required\":[\"id\",\"image\",\"title\",\"remark\",\"played\",\"playing\"]},\"minItems\":4,\"maxItems\":4},\"pagination\":{\"type\":\"object\",\"properties\":{\"current\":{\"type\":\"number\",\"mock\":{\"mock\":\"1\"}},\"total\":{\"type\":\"number\",\"mock\":{\"mock\":\"20\"}}},\"required\":[\"current\",\"total\"]}},\"required\":[\"result\",\"pagination\"]}},\"required\":[\"status\",\"message\",\"data\"]}"
+{
+  "img": "https://wlm-app.oss-cn-huhehaote.aliyuncs.com/7f5anuqicus218tug15l.png",
+  "signs": [
+    {
+      "author": {
+        "id": 49,
+        "name": "乌兰美职业培训学校",
+        "logo": "https://wlm-app.oss-cn-huhehaote.aliyuncs.com/itamd2v88sayfr4l0x3m.jpg",
+        "url": "",
+        "brief": "依托乌兰察布医专优质教学资源，拥有固定的医专培训场地，可同时容纳200人培训。",
+        "isReco": true,
+        "sort": 30,
+        "enabled": true,
+        "addTime": "2020-06-21 15:47:42",
+        "updateTime": "2020-06-22 11:44:16",
+        "deleted": false,
+        "content": "<p>乌兰美职业培训学校依托乌兰察布医专优质教学资源，拥有固定的医专培训场地，可同时容纳200人培训。包括多功能厅、一体化多媒体教室、家政服务、母婴护理、老年护理、病人陪护、保健按摩、厨艺、花卉养护等实训室。</p>"
       },
-      {
-        "query_path": {
-          "path": "/like",
-          "params": []
-        },
-        "edit_uid": 0,
-        "status": "done",
-        "type": "static",
-        "req_body_is_json_schema": true,
-        "res_body_is_json_schema": true,
-        "api_opened": false,
-        "index": 0,
-        "tag": [],
-        "_id": 30,
-        "method": "GET",
-        "catid": 15,
-        "title": "猜你喜欢",
-        "path": "/like",
-        "project_id": 20,
-        "req_params": [],
-        "res_body_type": "json",
-        "uid": 12,
-        "add_time": 1592872163,
-        "up_time": 1592878975,
-        "req_query": [],
-        "req_headers": [],
-        "req_body_form": [],
-        "__v": 0,
-        "desc": "",
-        "markdown": "",
-        "res_body": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{\"status\":{\"type\":\"number\",\"mock\":{\"mock\":\"200\"}},\"message\":{\"type\":\"string\",\"mock\":{\"mock\":\"success\"}},\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"string\",\"mock\":{\"mock\":\"@id\"}},\"title\":{\"type\":\"string\",\"mock\":{\"mock\":\"@ctitle\"}},\"image\":{\"type\":\"string\",\"mock\":{\"mock\":\"http://39.105.213.120/thumbnail/@integer(1,61).jpg\"}}},\"required\":[\"id\",\"title\",\"image\"]},\"minItems\":6,\"maxItems\":6}},\"required\":[\"status\",\"message\",\"data\"]}"
-      },
-      {
-        "query_path": {
-          "path": "/carousel",
-          "params": []
-        },
-        "edit_uid": 12,
-        "status": "done",
-        "type": "static",
-        "req_body_is_json_schema": true,
-        "res_body_is_json_schema": true,
-        "api_opened": false,
-        "index": 0,
-        "tag": [],
-        "_id": 23,
-        "method": "GET",
-        "catid": 15,
-        "title": "轮播图接口",
-        "path": "/carousel",
-        "project_id": 20,
-        "req_params": [],
-        "res_body_type": "json",
-        "uid": 12,
-        "add_time": 1592667998,
-        "up_time": 1592878974,
-        "req_query": [],
-        "req_headers": [],
-        "req_body_form": [],
-        "__v": 0,
-        "desc": "",
-        "markdown": "",
-        "res_body": "{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"object\",\"properties\":{\"status\":{\"type\":\"number\"},\"msg\":{\"type\":\"string\"},\"data\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"id\":{\"type\":\"number\"},\"image\":{\"type\":\"string\",\"mock\":{\"mock\":\"http://39.105.213.120/thumbnail/@integer(1,61).jpg\"}},\"color\":{\"type\":\"array\",\"items\":{\"type\":\"string\",\"mock\":{\"mock\":\"@color\"}},\"minItems\":2,\"maxItems\":2}},\"required\":[\"id\",\"image\",\"color\"]}}}}"
+      "info": {
+        "id": 1181143,
+        "goodsSn": "20200621136863",
+        "name": "乌兰美集团公司免费培训",
+        "authorId": 49,
+        "brief": "免费培训、包食宿，最重要的是安排就业！！！",
+        "isOnSale": true,
+        "picUrl": "https://wlm-app.oss-cn-huhehaote.aliyuncs.com/5kz5q69ac0wkhrnynp72.png",
+        "shareUrl": "",
+        "videoUrl": "https://wlm-app.oss-cn-huhehaote.aliyuncs.com/sq70fw66ulln6q6q889c.png",
+        "volume": 0,
+        "addTime": "2020-06-21 15:49:41",
+        "endTime": "2020-07-31 00:00:00",
+        "detail": "<p><img src=\"https://wlm-app.oss-cn-huhehaote.aliyuncs.com/boinhe4vabxmi10y4b36.png\" alt=\"\" width=\"750\" height=\"4147\" /></p>"
       }
-    ]
-  }
-]
+    },
+    {
+      "author": {
+        "id": 48,
+        "name": "杨宣民",
+        "logo": "https://wlm-app.oss-cn-huhehaote.aliyuncs.com/tzb6wg334zhg63qo3fk6.jpg",
+        "url": "",
+        "brief": "",
+        "isReco": true,
+        "sort": 25,
+        "enabled": true,
+        "addTime": "2020-06-19 11:52:10",
+        "updateTime": "2020-06-28 09:48:53",
+        "deleted": false,
+        "content": "<p>著名形象设计师</p>\n<p>&nbsp;</p>\n<p>sttylers品牌创始人</p>\n<p>&nbsp;</p>\n<p>生活美学导师</p>\n<p>&nbsp;</p>\n<p>国际女性素质教育高级培训师</p>\n<p>幽兰女社签约高级讲师</p>\n<p>&nbsp;</p>\n<p>北京师范大学签约讲师</p>\n<p>&nbsp;</p>\n<p>洲际小姐国际小姐美丽导师/全球旅游文化小姐美丽导师</p>\n<p>杨宣民早年毕业于内蒙古医学院，后又在清华大学深造，03年之后赴日本专攻服饰色彩与心理学。后在韩国K-Beauty机构工作多年，回国后长期从事形象美学咨询，服饰搭配工作。</p>\n<p>同时宣民老师还在该领域一直做教学工作，创办了西北地区首家形象礼仪美育机构。</p>\n<p>在幽兰女社学习以来成为张乐华博士亲传弟子之一。成为幽兰女社高级讲师团成员。主讲服饰搭配、服饰色彩、美妆礼仪等课程。</p>\n<p>&nbsp;</p>"
+      },
+      "info": {
+        "id": 1181142,
+        "goodsSn": "20200619496484",
+        "name": "女性优雅特色课",
+        "authorId": 48,
+        "brief": "直探形象美学精髓，为你揭开着装品位的奥秘",
+        "isOnSale": true,
+        "picUrl": "https://wlm-app.oss-cn-huhehaote.aliyuncs.com/62bne9tkg12zz1hwax6w.jpg",
+        "shareUrl": "",
+        "videoUrl": "https://wlm-app.oss-cn-huhehaote.aliyuncs.com/bay2cpwl0w0nzr7ql6j5.jpg",
+        "volume": 0,
+        "addTime": "2020-06-19 20:07:41",
+        "endTime": "2020-06-30 00:00:00",
+        "detail": "<p><img src=\"https://wlm-app.oss-cn-huhehaote.aliyuncs.com/tccvfjlna2jlwf76yhnd.png\" alt=\"\" width=\"750\" height=\"3534\" /></p>"
+      }
+    },
+    {
+      "author": {
+        "id": 30,
+        "name": "孙正捷",
+        "logo": "https://wlm-app.oss-cn-huhehaote.aliyuncs.com/x397bm6yb1prbrodwc8l.jpg",
+        "url": "",
+        "brief": "",
+        "isReco": true,
+        "sort": 7,
+        "enabled": true,
+        "addTime": "2020-06-19 11:48:50",
+        "updateTime": "2020-06-28 09:49:17",
+        "deleted": false,
+        "content": "<p>毕业于内蒙古医科大学中医专业，现任职于乌兰察布医学高等专科学校与医专附属医院。</p>\n<p><strong>从事中医专业22年，</strong><strong>乌兰美保健按摩专业带头人。</strong></p>\n<p>2002年赴陕西中医学院附属医院进修一年。</p>\n<p>2013年赴天津医科大学参加国家级培训。</p>\n<p>2016年参加国家级保健按摩师培训。</p>"
+      },
+      "info": {
+        "id": 1181141,
+        "goodsSn": "20200619996118",
+        "name": "保健按摩特色培训班",
+        "authorId": 30,
+        "brief": "课程具有极强的针对性和实用性，为学员开展创业及再就业提供帮助",
+        "isOnSale": true,
+        "picUrl": "https://wlm-app.oss-cn-huhehaote.aliyuncs.com/ag1pwqsnrhy4nfrv1clh.png",
+        "shareUrl": "",
+        "videoUrl": "https://wlm-app.oss-cn-huhehaote.aliyuncs.com/fxtlc4j48xsjqn9k3v5x.png",
+        "volume": 0,
+        "addTime": "2020-06-19 19:55:23",
+        "endTime": "2020-06-30 00:00:00",
+        "detail": "<p><img src=\"https://wlm-app.oss-cn-huhehaote.aliyuncs.com/ep61e3ijz9elh1as8ys6.png\" alt=\"\" width=\"750\" height=\"3959\" /></p>"
+      }
+    },
+    {
+      "author": {
+        "id": 25,
+        "name": "宋兵兵",
+        "logo": "https://wlm-app.oss-cn-huhehaote.aliyuncs.com/0weiq0xnooxtztzh30h2.jpg",
+        "url": "",
+        "brief": "",
+        "isReco": true,
+        "sort": 3,
+        "enabled": true,
+        "addTime": "2020-05-26 16:22:37",
+        "updateTime": "2020-06-28 09:49:38",
+        "deleted": false,
+        "content": "<p>乌兰美营养膳食工作室创始人</p>\n<p>乌兰美职业培训学校营养餐教学带头人、高级讲师</p>\n<p>曾获多项大奖</p>\n<p>国家三级家政服务员资格证/中式烹调师资格证</p>\n<p>从事厨师行业数十年，专业课通俗易懂，亲和力强，业界口碑反响热烈</p>"
+      },
+      "info": {
+        "id": 1181140,
+        "goodsSn": "20200619295591",
+        "name": "特色月子餐研修班",
+        "authorId": 25,
+        "brief": "提高从业人员月子餐的操作专业水准和在烹调作业中的膳食营养基础",
+        "isOnSale": true,
+        "picUrl": "https://wlm-app.oss-cn-huhehaote.aliyuncs.com/q74elwqubue0bsbh2byj.png",
+        "shareUrl": "",
+        "videoUrl": "https://wlm-app.oss-cn-huhehaote.aliyuncs.com/qzaqiqd04fcizr5hn0e4.png",
+        "volume": 0,
+        "addTime": "2020-06-19 19:51:50",
+        "endTime": "2020-06-30 00:00:00",
+        "detail": "<p><img src=\"https://wlm-app.oss-cn-huhehaote.aliyuncs.com/qqkjups37g0qs5fd0u9s.png\" alt=\"\" width=\"767\" height=\"4576\" /></p>"
+      }
+    }
+  ],
+  "footer": "https://wlm-app.oss-cn-huhehaote.aliyuncs.com/pczlm3a9davzzpwyafar.png",
+  "banner": [
+    {
+      "id": 1,
+      "name": "合作 谁是你的菜",
+      "link": "http://www.baidu.com",
+      "url": "http://yanxuan.nosdn.127.net/65091eebc48899298171c2eb6696fe27.jpg",
+      "position": 1,
+      "content": "合作 谁是你的菜",
+      "enabled": true,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2020-06-23 14:30:41",
+      "deleted": false
+    },
+    {
+      "id": 2,
+      "name": "活动 美食节",
+      "link": "http://www.baidu.com",
+      "url": "http://yanxuan.nosdn.127.net/bff2e49136fcef1fd829f5036e07f116.jpg",
+      "position": 1,
+      "content": "活动 美食节",
+      "enabled": true,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2020-06-23 14:30:51",
+      "deleted": false
+    },
+    {
+      "id": 3,
+      "name": "活动 母亲节",
+      "link": "http://www.baidu.com",
+      "url": "http://yanxuan.nosdn.127.net/8e50c65fda145e6dd1bf4fb7ee0fcecc.jpg",
+      "position": 1,
+      "content": "活动 母亲节5",
+      "enabled": true,
+      "addTime": "2018-02-01 00:00:00",
+      "updateTime": "2020-06-23 14:30:54",
+      "deleted": false
+    }
+  ],
+  "lessons": "1181140",
+  "authors": [
+    {
+      "id": 49,
+      "name": "乌兰美职业培训学校",
+      "logo": "https://wlm-app.oss-cn-huhehaote.aliyuncs.com/itamd2v88sayfr4l0x3m.jpg",
+      "url": "",
+      "brief": "依托乌兰察布医专优质教学资源，拥有固定的医专培训场地，可同时容纳200人培训。",
+      "isReco": true,
+      "sort": 30,
+      "enabled": true,
+      "addTime": "2020-06-21 15:47:42",
+      "updateTime": "2020-06-22 11:44:16",
+      "deleted": false
+    },
+    {
+      "id": 51,
+      "name": "张亚星",
+      "logo": "",
+      "url": "",
+      "brief": "",
+      "isReco": true,
+      "sort": 28,
+      "enabled": true,
+      "addTime": "2020-06-28 17:41:55",
+      "updateTime": "2020-07-03 20:40:31",
+      "deleted": false
+    },
+    {
+      "id": 48,
+      "name": "杨宣民",
+      "logo": "https://wlm-app.oss-cn-huhehaote.aliyuncs.com/tzb6wg334zhg63qo3fk6.jpg",
+      "url": "",
+      "brief": "",
+      "isReco": true,
+      "sort": 25,
+      "enabled": true,
+      "addTime": "2020-06-19 11:52:10",
+      "updateTime": "2020-06-28 09:48:53",
+      "deleted": false
+    },
+    {
+      "id": 50,
+      "name": "陈慧娟",
+      "logo": "https://wlm-app.oss-cn-huhehaote.aliyuncs.com/vmupdihx34gr09uxln74.jpg",
+      "url": "",
+      "brief": "",
+      "isReco": true,
+      "sort": 24,
+      "enabled": true,
+      "addTime": "2020-06-23 11:36:52",
+      "updateTime": "2020-06-27 11:48:02",
+      "deleted": false
+    }
+  ]
+}

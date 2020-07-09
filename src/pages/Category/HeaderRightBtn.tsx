@@ -11,18 +11,16 @@ import { View } from 'react-native';
 import { RootState } from '@/models/index';
 import { RootStackNavigation } from '@/navigator/index';
 const mapStateToProps = ({category, loading}: RootState) => ({
-  isEdit:category.isEdit
-  
+  isEdit:category.isEdit,
+  title:category.title
 });
 type ModelState = ConnectedProps<typeof connector>;
 interface IProps extends ModelState {}
 const connector = connect(mapStateToProps); // 映射state中的model
 class HeaderRightBtn extends React.Component<IProps>{
-   state = {
-    title:'编辑'
-  }
+   
   handleoptions=()=>{
-    const {dispatch,isEdit}=this.props
+    const {dispatch,isEdit,title}=this.props
    
     dispatch({
       type: 'category/asyncToggle',
@@ -31,15 +29,15 @@ class HeaderRightBtn extends React.Component<IProps>{
       },
     });
     this.setState({
-      title:isEdit?'完成':'编辑'
+      title:title
     })
   }
   render(){
-    const {title}=this.state
+    const {title}=this.props
     return(
       <View>
         <HeaderButtons>
-        <Item title={title}  onPress={this.handleoptions} />
+        <Item title={title}  onPress={this.handleoptions}  />
         </HeaderButtons>
       </View>
     )
