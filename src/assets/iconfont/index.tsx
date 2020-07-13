@@ -4,6 +4,7 @@
 import React, { FunctionComponent } from 'react';
 import { ViewProps } from 'react-native';
 import { GProps } from 'react-native-svg';
+import Iconfanhui from './Iconfanhui';
 import Iconsearch from './Iconsearch';
 import Iconerji from './Iconerji';
 import Iconziyuanldpi from './Iconziyuanldpi';
@@ -15,7 +16,7 @@ import Iconfaxian from './Iconfaxian';
 import Iconyinle from './Iconyinle';
 import IconHome from './IconHome';
 
-export type IconNames = 'iconsearch' | 'iconerji' | 'iconziyuanldpi' | 'iconhuanyipi' | 'iconyoujiantou' | 'iconcainixihuan' | 'iconwode' | 'iconfaxian' | 'iconyinle' | 'iconHome';
+export type IconNames = 'iconfanhui' | 'iconsearch' | 'iconerji' | 'iconziyuanldpi' | 'iconhuanyipi' | 'iconyoujiantou' | 'iconcainixihuan' | 'iconwode' | 'iconfaxian' | 'iconyinle' | 'iconHome';
 
 interface Props extends GProps, ViewProps {
   name: IconNames;
@@ -25,26 +26,28 @@ interface Props extends GProps, ViewProps {
 
 const IconFont: FunctionComponent<Props> = ({ name, ...rest }) => {
   switch (name) {
+    case 'iconfanhui':
+      return <Iconfanhui key="1" {...rest} />;
     case 'iconsearch':
-      return <Iconsearch key="1" {...rest} />;
+      return <Iconsearch key="2" {...rest} />;
     case 'iconerji':
-      return <Iconerji key="2" {...rest} />;
+      return <Iconerji key="3" {...rest} />;
     case 'iconziyuanldpi':
-      return <Iconziyuanldpi key="3" {...rest} />;
+      return <Iconziyuanldpi key="4" {...rest} />;
     case 'iconhuanyipi':
-      return <Iconhuanyipi key="4" {...rest} />;
+      return <Iconhuanyipi key="5" {...rest} />;
     case 'iconyoujiantou':
-      return <Iconyoujiantou key="5" {...rest} />;
+      return <Iconyoujiantou key="6" {...rest} />;
     case 'iconcainixihuan':
-      return <Iconcainixihuan key="6" {...rest} />;
+      return <Iconcainixihuan key="7" {...rest} />;
     case 'iconwode':
-      return <Iconwode key="7" {...rest} />;
+      return <Iconwode key="8" {...rest} />;
     case 'iconfaxian':
-      return <Iconfaxian key="8" {...rest} />;
+      return <Iconfaxian key="9" {...rest} />;
     case 'iconyinle':
-      return <Iconyinle key="9" {...rest} />;
+      return <Iconyinle key="10" {...rest} />;
     case 'iconHome':
-      return <IconHome key="10" {...rest} />;
+      return <IconHome key="11" {...rest} />;
   }
 
   return null;

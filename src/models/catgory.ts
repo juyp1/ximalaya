@@ -24,13 +24,15 @@ interface CategoryModel extends Model {
   reducers?: { // 定义 reducers 
     initlist: Reducer<CategoryState>;
     toggleedit: Reducer<CategoryState>; // 切换编辑状态
-    addmycategorys: Reducer<CategoryState>; // 切换编辑状态
+    addmycategorys: Reducer<CategoryState>; // 新增我选择的信息
+    delmycatgorys:Reducer<CategoryState>; // 删除我选择的信息
   }
   // 定义异步函数
   effects: {
     asyncCategory: Effect
     asyncToggle: Effect
     asyncAddMyCategory: Effect
+    asyncDelMyCategory:Effect
   }
 }
 
@@ -56,6 +58,7 @@ const categoryModel: CategoryModel = {
       return {
         ...state,
         categorys: payload,
+        
       }
     },
     toggleedit(state = initialState, { payload, type }) {
@@ -71,7 +74,14 @@ const categoryModel: CategoryModel = {
         ...state,
         mycategorys: payload.selectcategory
       }
-    }
+    },
+    delmycatgorys(state = initialState, { payload, type, select }) {
+      return {
+        ...state,
+        mycategorys: payload.selectcategory
+      }
+    },
+
   },
   // Effect 异步实现reducers
   effects: {
@@ -99,10 +109,21 @@ const categoryModel: CategoryModel = {
     *asyncAddMyCategory({ payload }, { call, put, select }) {
       let { mycategorys } = yield select((state: RootState) => state.category) // 拿到所有
       mycategorys.push(payload.myselect)
-      var appArray = _ .uniqWith(mycategorys ,_ .isEqual );
-      console.log('---appArray',appArray)
+      let appArray = _ .uniqWith(mycategorys ,_ .isEqual );
       yield put({
         type: 'category/addmycategorys',
+        payload: {
+          selectcategory: appArray
+        }
+      });
+    },
+     *asyncDelMyCategory({ payload }, { call, put, select }) {
+      let { mycategorys } = yield select((state: RootState) => state.category) // 拿到所有
+  
+      let appArray = _.pull(mycategorys,payload.myselect);
+      
+      yield put({
+        type: 'category/delmycatgorys',
         payload: {
           selectcategory: appArray
         }

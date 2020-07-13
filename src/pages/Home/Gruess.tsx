@@ -5,15 +5,20 @@ import TouchableOpacity from '@/component/Touchable';
 import {connect, ConnectedProps} from 'react-redux';
 import {RootState} from '@/models/index';
 import {ILike} from '@/models/home';
-
+import {RootStackNavigation} from '../../navigator';
 const mapStateToProps = ({home}: RootState) => {
   return {
     likes: home.likes,
+    
   };
 };
+ 
 const connector = connect(mapStateToProps);
 type ModelState = ConnectedProps<typeof connector>;
-class Gruess extends React.Component<ModelState> {
+interface IProps extends ModelState {
+  navigation: RootStackNavigation;
+}
+class Gruess extends React.Component<IProps> {
   componentDidMount() {
     this.feact();
   }
@@ -23,12 +28,14 @@ class Gruess extends React.Component<ModelState> {
       type: 'home/asyncLikes',
     });
   };
-  handledetail = () => {
+  handledetail = (e:ILike) => {
     //alert('点击');
+    const { navigation} =this.props
+    navigation.navigate("Album",{id:parseInt(e.id),title:e.title})
   };
   renderItem = ({item}: {item: ILike}) => {
     return (
-      <TouchableOpacity style={styles.item} onPress={this.handledetail}>
+      <TouchableOpacity style={styles.item} onPress={this.handledetail.bind(this,item)}>
         <Image source={{uri: item.image}} style={styles.itemImg}></Image>
         <Text style={styles.itemtitle} numberOfLines={2}>
           {item.title}

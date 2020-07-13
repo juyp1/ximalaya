@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Button, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import {connect, ConnectedProps} from 'react-redux';
 import {RootState} from '@/models/index';
 import {RootStackNavigation} from '../../navigator';
@@ -7,9 +7,10 @@ import storage from '@/config/storage';
 import _, {isEmpty} from 'lodash';
 import {ScrollView} from 'react-native-gesture-handler';
 import {ICategory} from '@/models/catgory';
-// 组件 每一项
-import CategoryItem from './categoryItem';
-import Touchable from '@/component/Touchable';
+import {Button} from 'react-native-elements';
+import Toast from 'react-native-root-toast';
+import HeaderRightBtn from './HeaderRightBtn';
+import {DragSortableView} from 'react-native-drag-sort';
 const mapStateToProps = ({category, loading}: RootState) => ({
   categorys: category.categorys,
   mycategory: category.mycategorys,
@@ -22,6 +23,12 @@ interface IProps extends ModelState {
 }
 
 class Index extends React.Component<IProps> {
+  constructor(props: IProps) {
+    super(props);
+    props.navigation.setOptions({
+      headerRight: () => <HeaderRightBtn />,
+    });
+  }
   feact = () => {
     const {dispatch} = this.props;
     dispatch({
@@ -37,14 +44,29 @@ class Index extends React.Component<IProps> {
         console.log('缓存中的数据---', res);
       });
   };
+  handlemyitem = (e: ICategory) => {
+    const {dispatch, isEdit} = this.props;
+    if (isEdit) {
+      dispatch({
+        type: 'category/asyncDelMyCategory',
+        payload: {
+          myselect: e,
+        },
+      });
+      this.feact();
+    }
+  };
   rendermycategory = () => {
     const {mycategory, isEdit} = this.props;
-
     return mycategory.map((item, index) => {
       return (
         <View style={styles.categortitem}>
           <View key={item.id}>
-            <Text>{item.name}</Text>
+            <Button
+              type="clear"
+              titleStyle={styles.btntitleStyle}
+              title={item.name}
+              onPress={this.handlemyitem.bind(this, item)}></Button>
             {isEdit ? (
               <View style={styles.icon}>
                 <Text style={styles.iconText}>{isEdit ? '-' : '-'}</Text>
@@ -75,13 +97,23 @@ class Index extends React.Component<IProps> {
     if (isEdit) {
       const {dispatch} = this.props;
 
-      dispatch({
-        type: 'category/asyncAddMyCategory',
-        payload: {
-          myselect: e,
+      Toast.show('添加成功', {
+        duration: Toast.durations.LONG,
+        position: Toast.positions.CENTER,
+        shadow: true,
+        animation: true,
+        hideOnPress: true,
+        delay: 0,
+        onShow: function () {
+          dispatch({
+            type: 'category/asyncAddMyCategory',
+            payload: {
+              myselect: e,
+            },
+          });
         },
       });
-      this.feact();
+      // this.feact();
     }
     // const {dispatch}=this.props
 
@@ -93,7 +125,7 @@ class Index extends React.Component<IProps> {
     // });
   };
   render() {
-    const {categorys, navigation, isEdit} = this.props;
+    const {categorys, navigation, isEdit, mycategory} = this.props;
     const classfiygroup = _.groupBy(categorys, (item) => item.classify);
 
     return (
@@ -116,13 +148,29 @@ class Index extends React.Component<IProps> {
                 <View style={{flex: 1, flexDirection: 'row', flexWrap: 'wrap'}}>
                   {classfiygroup[classfiy].map((item, index) => {
                     return (
-                      <Touchable onPress={this.handleadd.bind(this, item)}>
-                        <CategoryItem
-                          data={item}
-                          isedit={isEdit}
-                          naivgation={navigation}
-                        />
-                      </Touchable>
+                      // <CategoryItem
+                      //   data={item}
+                      //   isedit={isEdit}
+                      //   naivgation={navigation}
+                      // />
+                      <View style={styles.categortitem}>
+                        <View key={item.id}>
+                          <Button
+                            type="clear"
+                            titleStyle={styles.btntitleStyle}
+                            title={item.name}
+                            onPress={this.handleadd.bind(this, item)}></Button>
+                          {isEdit ? (
+                            <View style={styles.icon}>
+                              <Text style={styles.iconText}>
+                                {isEdit ? '+' : '-'}
+                              </Text>
+                            </View>
+                          ) : (
+                            <View></View>
+                          )}
+                        </View>
+                      </View>
                     );
                   })}
                 </View>
@@ -169,11 +217,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     padding: 5,
   },
-  categorycontainers: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    padding: 5,
-  },
+
   categortitem: {
     width: '20%',
     backgroundColor: '#ffffff',
@@ -181,6 +225,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     margin: 10,
+
     borderRadius: 4,
   },
   icon: {
@@ -199,6 +244,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
+  },
+  btntitleStyle: {
+    color: '#333333',
+    fontSize: 13,
   },
 });
 export default connector(Index);

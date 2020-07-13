@@ -16,11 +16,13 @@ import ChanngelsList from './ChanngelsList';
 import ChannelsItem from './ChannelsItem';
 import {IChannel} from '@/models/home';
 import TouchableOpacity from '@/component/Touchable';
-const mapStateToProps = ({home, loading}: RootState) => ({
+
+const mapStateToProps = ({home, category, loading}: RootState) => ({
   loading: loading.effects['home/asyncChannels'], // dev loading effects
   carousels: home.carousels,
   channgels: home.channgels,
   hasMore: home.pagination.hasMore,
+  mycategory: category.mycategorys,
 });
 const connector = connect(mapStateToProps); // 映射state中的model
 type ModelState = ConnectedProps<typeof connector>;
@@ -33,6 +35,9 @@ interface IProps extends ModelState {
 // }
 // 控制下拉刷新是否展示
 class Home extends React.Component<IProps> {
+  constructor(props: any) {
+    super(props);
+  }
   // 下拉展示 松开释放
   state = {
     refreshing: false,
@@ -97,14 +102,13 @@ class Home extends React.Component<IProps> {
     let offsetY = e.nativeEvent.contentOffset.y;
     const {dispatch} = this.props;
     if (offsetY > 300) {
-      
       dispatch({
         type: 'home/visblecarousels',
         payload: {
           carouselvisble: true,
         },
       });
-    }else {
+    } else {
       dispatch({
         type: 'home/visblecarousels',
         payload: {
@@ -113,13 +117,15 @@ class Home extends React.Component<IProps> {
       });
     }
   };
+
   // 属性形式 get
   get header() {
+    const {navigation}=this.props
     return (
       <View>
         <Carousel />
         <View style={styles.bkgruess}>
-        <Gruess />
+          <Gruess navigation={navigation}/>
         </View>
       </View>
     );
@@ -185,8 +191,8 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     alignItems: 'center',
   },
-  bkgruess:{
-    backgroundColor:'#ffffff'
-  }
+  bkgruess: {
+    backgroundColor: '#ffffff',
+  },
 });
 export default connector(Home);

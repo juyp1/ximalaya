@@ -152,7 +152,7 @@ const homeModel: HomeModel = {
       });
       let newChannels = data.data.result
       let paginations = data.data.pagination
-      // console.log('xxxxx-',newChannels)
+ 
       if (payload && payload.loadMore) {
         newChannels = channgels.concat(newChannels)
       }

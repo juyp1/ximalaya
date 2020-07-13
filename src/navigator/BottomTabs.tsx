@@ -55,10 +55,23 @@ class BottomTabs extends React.Component<IProps> {
   }
   setOptions = () => {
     const {navigation, route} = this.props;
+    
     const routenName = route.state
+    
       ? route.state.routes[route.state.index].name
       : route.params?.screen || 'HomeTabs';
+      console.log('---',routenName);
     if (routenName === 'HomeTabs') {
+      navigation.setOptions({
+        headerTransparent: true, // 隐藏标题栏
+        headerTitle: '',
+      });
+    }else if(routenName==='Listen'){
+      navigation.setOptions({
+        headerTransparent: true, // 隐藏标题栏
+        headerTitle: '',
+      });
+    }else if(routenName==='Album'){
       navigation.setOptions({
         headerTransparent: true, // 隐藏标题栏
         headerTitle: '',
