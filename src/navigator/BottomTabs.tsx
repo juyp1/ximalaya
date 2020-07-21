@@ -12,11 +12,13 @@ import Found from '@/pages/Found';
 import My from '@/pages/My';
 import {RootStackNavigation, RootStackParamList} from '.';
 import HomeTabs from './HomeTabs';
+import Play from '@/pages/componet/Play.tsx'
 export type ButtomTabparamsList = {
   HomeTabs: undefined;
   Listen: undefined;
   Found: undefined;
   My: undefined;
+  Play:undefined
 };
 type Route = RouteProp<RootStackParamList, 'BottomTabs'> & {
   state?: TabNavigationState;
@@ -33,7 +35,7 @@ function getHeaderTitle(route: Route) {
   switch (routenName) {
     case 'HomeTabs':
       return '首页';
-  
+
     case 'Listen':
       return '我听';
 
@@ -55,23 +57,22 @@ class BottomTabs extends React.Component<IProps> {
   }
   setOptions = () => {
     const {navigation, route} = this.props;
-    
+
     const routenName = route.state
-    
       ? route.state.routes[route.state.index].name
       : route.params?.screen || 'HomeTabs';
-      console.log('---',routenName);
+    console.log('---', routenName);
     if (routenName === 'HomeTabs') {
       navigation.setOptions({
         headerTransparent: true, // 隐藏标题栏
         headerTitle: '',
       });
-    }else if(routenName==='Listen'){
+    } else if (routenName === 'Listen') {
       navigation.setOptions({
         headerTransparent: true, // 隐藏标题栏
         headerTitle: '',
       });
-    }else if(routenName==='Album'){
+    } else if (routenName === 'Album') {
       navigation.setOptions({
         headerTransparent: true, // 隐藏标题栏
         headerTitle: '',
@@ -110,6 +111,9 @@ class BottomTabs extends React.Component<IProps> {
             ),
           }}
         />
+        <Tab.Screen  name="Play" component={Play} options={{ tabBarButton:()=>{
+          return <Play/>
+        }}}></Tab.Screen>
         <Tab.Screen
           name="Found"
           component={Found}

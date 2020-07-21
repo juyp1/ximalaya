@@ -21,7 +21,7 @@ export interface AlbumState {
   summary: string,
   thumbnailUrl:string,
   introduction:string,
-  author:Iauthor,
+  author:Iauthor[],
   list:Ilist[]
 }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet,Image} from 'react-native';
+import {View, Text, StyleSheet, Image, Animated} from 'react-native';
 import {RootState} from '@/models/index';
 import {ConnectedProps, connect} from 'react-redux';
 // 导入本地图片
@@ -12,7 +12,9 @@ import Navigator, {
 import {RouteProp} from '@react-navigation/native';
 import {Header, Button} from 'react-native-elements';
 import Touchable from '@/component/Touchable';
-import {BlurView} from '@react-native-community/blur'
+import {BlurView} from '@react-native-community/blur';
+import Tab from './Tab';
+ 
 const mapStateToProps = ({album}: RootState) => {
   return {
     title: album.title,
@@ -28,6 +30,7 @@ interface IProps extends ModelState {
   route: RouteProp<RootStackParamList, 'Album'>;
 }
 class Album extends React.Component<IProps> {
+  translateY = new Animated.Value(0);
   componentDidMount() {
     const {navigation, title} = this.props;
     navigation.setOptions({
@@ -41,6 +44,10 @@ class Album extends React.Component<IProps> {
     dispatch({
       type: 'album/asyncinitDetail',
     });
+    Animated.timing(this.translateY, {
+      toValue: -170,
+      duration: 4000
+    }).start();
   };
   handlepop = () => {
     const {navigation} = this.props;
@@ -76,16 +83,18 @@ class Album extends React.Component<IProps> {
             }}
           /> */}
         </View>
-        <View style={{position:'absolute',top:36,left:10,zIndex:9999}}>
-        {this.leftMenu}
-          </View>
-        <View style={styles.header}>
-      
+        <View style={{position: 'absolute', top: 36, left: 10, zIndex: 9999}}>
+          {this.leftMenu}
+        </View>
+        <View style={[styles.header]}>
           <Image source={{uri: thumbnailUrl}} style={styles.backgroundtimg} />
-          <BlurView blurType="light" style={StyleSheet.absoluteFillObject} blurAmount={5}/>
-        
+          <BlurView
+            blurType="light"
+            style={StyleSheet.absoluteFillObject}
+            blurAmount={5}
+          />
+
           <View style={styles.leftView}>
-            
             <Image source={{uri: thumbnailUrl}} style={styles.thumbnailimg} />
             {/* <Image source={{uri:coverRight}} style={styles.coverRight} /> */}
           </View>
@@ -94,7 +103,9 @@ class Album extends React.Component<IProps> {
               <Text style={styles.title}>{title}</Text>
             </View>
             <View style={styles.summary}>
-              <Text numberOfLines={1}  style={styles.summarytext}>{summary}</Text>
+              <Text numberOfLines={1} style={styles.summarytext}>
+                {summary}
+              </Text>
             </View>
             <View style={styles.author}>
               <Image source={{uri: author.avatar}} style={styles.avatar} />
@@ -102,6 +113,7 @@ class Album extends React.Component<IProps> {
             </View>
           </View>
         </View>
+        <Tab id={1} />
         {/* <Text>{title}</Text>
         <Text>频道页面</Text> */}
       </View>
@@ -113,8 +125,7 @@ const styles = StyleSheet.create({
     height: 280,
     flexDirection: 'row',
     paddingHorizontal: 30,
-    alignItems:'center'
-  
+    alignItems: 'center',
   },
   leftView: {},
   RightView: {
@@ -151,7 +162,7 @@ const styles = StyleSheet.create({
   avatarname: {
     marginTop: 6,
     marginLeft: 6,
-    color:"#ffffff"
+    color: '#ffffff',
   },
   avatar: {
     width: 26,
@@ -166,9 +177,9 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     backgroundColor: '#eeeeee',
   },
-  summarytext:{
-    color:"#ffffff",
-    fontSize:14
-  }
+  summarytext: {
+    color: '#ffffff',
+    fontSize: 14,
+  },
 });
 export default connector(Album);

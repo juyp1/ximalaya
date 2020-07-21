@@ -5639,7 +5639,7 @@ react-native-screens@^2.8.0:
 
 react-native-scrollable-tab-view@^1.0.0:
   version "1.0.0"
-  resolved "https://registry.npm.taobao.org/react-native-scrollable-tab-view/download/react-native-scrollable-tab-view-1.0.0.tgz#87319896067f7bb643ecd7fba2cba4d6d8f9e18b"
+  resolved "https://registry.npm.taobao.org/react-native-scrollable-tab-view/download/react-native-scrollable-tab-view-1.0.0.tgz?cache=0&sync_timestamp=1572266321942&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Freact-native-scrollable-tab-view%2Fdownload%2Freact-native-scrollable-tab-view-1.0.0.tgz#87319896067f7bb643ecd7fba2cba4d6d8f9e18b"
   integrity sha1-hzGYlgZ/e7ZD7Nf7osuk1tj54Ys=
   dependencies:
     "@react-native-community/viewpager" "^2.0.1"
@@ -5654,6 +5654,11 @@ react-native-snap-carousel@^3.9.1:
   dependencies:
     prop-types "^15.6.1"
     react-addons-shallow-compare "15.6.2"
+
+react-native-sound@^0.11.0:
+  version "0.11.0"
+  resolved "https://registry.npm.taobao.org/react-native-sound/download/react-native-sound-0.11.0.tgz#ad60b55ba8c6dc89917f381ad3713f2738de530f"
+  integrity sha1-rWC1W6jG3ImRfzga03E/JzjeUw8=
 
 react-native-status-bar-height@^2.5.0:
   version "2.5.0"
